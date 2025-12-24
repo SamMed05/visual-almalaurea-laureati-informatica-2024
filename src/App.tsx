@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell, LabelList
@@ -182,7 +182,7 @@ const App = () => {
         usage: "Usage"
       }
     }
-  }[lang];
+  }[lang]!;
 
   const ageData = [
     { range: '< 23', value: 41.3 },
@@ -244,7 +244,7 @@ const App = () => {
     { name: lang === 'it' ? 'Non si iscriverebbero' : 'No university', value: 3.8 },
   ];
 
-  const renderCard = (title, icon, content) => (
+  const renderCard = (title: string, icon: React.ReactNode, content: React.ReactNode) => (
     <div className={`p-5 rounded-xl shadow-sm border flex flex-col h-full transition-colors ${
       darkMode 
         ? 'bg-gray-800 border-gray-700' 
@@ -362,7 +362,7 @@ const App = () => {
                       dataKey="value"
                       label={({name, value}) => `${name}: ${value}%`}
                     >
-                      {genderData.map((entry, index) => (
+                      {genderData.map((_, index) => (
                         <Cell key={`cell-${index}`} fill={index === 0 ? '#2563eb' : '#db2777'} />
                       ))}
                     </Pie>
@@ -436,7 +436,7 @@ const App = () => {
                         <LabelList 
                           dataKey="value" 
                           position="right" 
-                          formatter={(v) => `${v}%`} 
+                          formatter={(v: number) => `${v}%`} 
                           style={{ fill: darkMode ? '#60a5fa' : '#2563eb', fontSize: '14px' }} 
                         />
                       </Bar>
@@ -879,7 +879,7 @@ const App = () => {
                         label={({name, value}) => `${name}: ${value}%`}
                         style={{ fontSize: '13px', fontWeight: 'bold' }}
                       >
-                        {futureData.map((entry, index) => (
+                        {futureData.map((_, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
